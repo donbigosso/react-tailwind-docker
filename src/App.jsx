@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Counter from './components/Counter.jsx'
+import Button from './components/Button.jsx'
 export default function App() {
   const [count, setCount] = useState(0)
 
@@ -11,7 +12,8 @@ export default function App() {
           Narrow window: stacked. Wide window: side by side.
         </p>
       </div>
-      <Counter count={count} onIncrement={() => setCount(c => c + 1)} />
+      <Counter count={count} onIncrement={() => setCount(c => c + 1)} reset={() => setCount(0)} onDecrement={() => setCount(c => c - 1)} />
     </main>
+
   )
 }
