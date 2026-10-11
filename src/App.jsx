@@ -6,6 +6,9 @@ import SectionLgColMdRow from './components/SectionLgColMdRow.jsx'
 import Header from './components/Header.jsx'
 import Main from './components/Main.jsx'
 import FadingComponent from './components/FadingComponent.jsx'
+import ResizingComponent from './components/ResizingComponent.jsx'
+import SqTile from './components/SqTile.jsx'
+import SectionNoFlex from './components/SectionNoFlex.jsx'
 
 import SlidingComponent2 from './components/SlidingComponent2.jsx'
 
@@ -42,6 +45,25 @@ export default function App() {
 <SectionLgColMdRow>
   <FadingComponent />
 </SectionLgColMdRow>
+<SectionLgColMdRow>
+  <ResizingComponent />
+</SectionLgColMdRow>
+<SectionNoFlex>
+  <SqTile>Square Tile</SqTile>
+   <SqTile>Square Tile</SqTile>
+    <SqTile>Square Tile</SqTile>
+     <SqTile>Square Tile</SqTile>
+      <SqTile>Square Tile</SqTile>
+       <SqTile>Square Tile</SqTile>
+       <SqTile>Square Tile</SqTile>
+         <SqTile>Square Tile</SqTile>
+   <SqTile>Square Tile</SqTile>
+    <SqTile>Square Tile</SqTile>
+     <SqTile>Square Tile</SqTile>
+      <SqTile>Square Tile</SqTile>
+       <SqTile>Square Tile</SqTile>
+       <SqTile>Square Tile</SqTile>
+</SectionNoFlex>
 
 </Main>
 </div>
