@@ -16,57 +16,24 @@ export default function App() {
   const [count, setCount] = useState(0)
 
   return (
-   <div>
+  <div>
     <Header />
-   <Main>
-  {/* Row 1 */}
-  <SectionLgColMdRow>
-    <div className="max-w-sm text-center md:text-left">
-      <h1 className="text-3xl font-semibold lg:text-5xl">Docker + React + Tailwind</h1>
-      <p className="mt-3 text-slate-400 text-sm md:text-base">
-        Narrow window: stacked. Wide window: side by side.
-      </p>
-    </div>
-    <Counter count={count} onIncrement={() => setCount(c => c + 1)} reset={() => setCount(0)} onDecrement={() => setCount(c => c - 1)} />
-  </SectionLgColMdRow>
+    <Main>
+      <section id="home" className="w-full max-w-3xl text-center">
+        <h1 className="text-amber-400 text-4xl font-semibold"><span className="text-slate-100">Pol</span><span className="text-red-600">Afri</span></h1>
+        <p className="mt-4 text-slate-400">Polska w Gambii, Gambia w Polsce</p>
+      </section>
 
+      <section id="about" className="w-full max-w-3xl">
+        <h2 className="text-amber-400 text-2xl font-semibold">O nas</h2>
+        <p className="mt-3 text-slate-300">Krótki opis założycieli.</p>
+      </section>
 
-  <SectionLgColMdRow>
-    <Tile>Tile Content Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</Tile>
-    <Tile>Another Tile</Tile>
-  </SectionLgColMdRow>
-<SectionLgColMdRow>
-  <p>Paragraph content</p>
-</SectionLgColMdRow>
-
-<SectionLgColMdRow>
-  <SlidingComponent2 />
-</SectionLgColMdRow>
-<SectionLgColMdRow>
-  <FadingComponent />
-</SectionLgColMdRow>
-<SectionLgColMdRow>
-  <ResizingComponent />
-</SectionLgColMdRow>
-<SectionNoFlex>
-  <SqTile>Square Tile</SqTile>
-   <SqTile>Square Tile</SqTile>
-    <SqTile>Square Tile</SqTile>
-     <SqTile>Square Tile</SqTile>
-      <SqTile>Square Tile</SqTile>
-       <SqTile>Square Tile</SqTile>
-       <SqTile>Square Tile</SqTile>
-         <SqTile>Square Tile</SqTile>
-   <SqTile>Square Tile</SqTile>
-    <SqTile>Square Tile</SqTile>
-     <SqTile>Square Tile</SqTile>
-      <SqTile>Square Tile</SqTile>
-       <SqTile>Square Tile</SqTile>
-       <SqTile>Square Tile</SqTile>
-</SectionNoFlex>
-
-</Main>
-</div>
-
-  )
+      <section id="contact" className="w-full max-w-3xl">
+        <h2 className="text-amber-400text-2xl font-semibold">Kontakt</h2>
+        <p className="mt-3 text-slate-300">polafri@gmail.com</p>
+      </section>
+    </Main>
+  </div>
+)
 }
