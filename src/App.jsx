@@ -13,12 +13,13 @@ import bannerPhoto1 from './images/banner/szkola.jpg'
 import bannerPhoto2 from './images/banner/tescie.jpg'
 import bannerPhoto3 from './images/banner/wisla.jpg'
 import IconTile from './components/IconTile.jsx'
+import { getRandomBannerPhotos } from './data/bannerPhotos.js'
 
 
 
 export default function App() {
   const [count, setCount] = useState(0)
-
+  const [slides] = useState(() => getRandomBannerPhotos(5))
   return (
   <div>
     <Header />
@@ -27,7 +28,7 @@ export default function App() {
         <h1 className="text-amber-400 text-4xl font-semibold"><span className="text-slate-100">Pol</span><span className="text-red-600">Afri</span></h1>
         <p className="mt-4 text-slate-400">Polska w Gambii, Gambia w Polsce</p>
       </section>
-      <Carousel images={[bannerPhoto1, bannerPhoto2, bannerPhoto3]} />
+      <Carousel images={slides} />
   <section id="tileSection" className="w-full max-w-4xl">
   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
     <NavTile href="#about" title="O nas">
