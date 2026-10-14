@@ -6,7 +6,7 @@ export default function IconTile({ href, title, Icon, children }) {
     >
       <h3 className="text-xl font-semibold text-amber-400">{title}</h3>
 
-      <div className="mx-auto mt-3 flex aspect-square w-full max-w-[200px] items-center justify-center rounded-lg bg-amber-900/40">
+      <div className="mx-auto mt-3 flex aspect-square w-full max-w-[200px] items-center justify-center rounded-lg ">
         <Icon className="h-full w-full text-amber-400" />
       </div>
 
