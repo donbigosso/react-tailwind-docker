@@ -17,6 +17,7 @@ import ImageModal from './components/ImageModal.jsx'
 import aboutImage from './images/for_content/about_01.jpg'
 import ImageMiniature from './components/ImageMiniature.jsx'
 import aboutMiniature from './images/for_content/about_01_sm.jpg'
+import testImage from './images/for_content/test_image.jpg'
 
 
 
@@ -57,12 +58,8 @@ export default function App() {
       <section id="about" className="w-full max-w-3xl">
         <h2 className="text-amber-400 text-2xl font-semibold">O nas</h2>
         <Paragraph>
-          <ImageMiniature src={aboutMiniature} alt="O nas" onClick={() => {
-  const fullSrc = aboutMiniature.replace('_sm', '')
-  setModalSrc(fullSrc)
-  setModalCaption('Rodzinka PolAfri')
-  setIsModalOpen(true)
-}}/>
+          <ImageMiniature src={aboutMiniature} alt="O nas" setIsModalOpen={setIsModalOpen} 
+          setModalSrc={setModalSrc} targetImage={aboutImage} setModalCaption={setModalCaption} modalCaption="Rodzinka PolAfri" />
           PolAfri powstało w 2014 roku jako lokalne biuro podróży specjalizujące się w lokalnych wycieczkach po Gambii dla polskich turystów. Założone zostało przez mieszane małżeństwo: Sonne (Gambijkę) i Wojtka (Polaka) czyli nas. Na początku mieszkaliśmy razem w Gambii przez prawie 3 lata. W międzyczasie nasza rodzinka powiększyła się o córkę - Marysię. Pod koniec  2016 roku całą trójką przeprowadziliśmy się do Polski i mieszkamy tam, a dokładnie w Bydgoszczy do dziś.
         </Paragraph>
         <Paragraph>
@@ -78,9 +75,9 @@ export default function App() {
 
     <ImageModal
       isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-      src={aboutImage}
-      alt="Rodzinka PolAfri"
+          onClose={() => setIsModalOpen(false)}
+          src={modalSrc}
+          alt="Rodzinka PolAfri"
       caption={modalCaption}
     />
   </div>
