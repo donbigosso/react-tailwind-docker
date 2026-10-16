@@ -1,8 +1,9 @@
-export default function ImageMiniature({ src, alt = '', onClick, setIsModalOpen, setModalSrc, targetImage, setModalCaption, modalCaption, children }) {
+export default function ImageMiniature({ src, alt = '', onClick, setisImageModalOpen, setimgModalSrc, setModalCaption, modalCaption, children }) {
 const clickFunction = () => {
-  setModalSrc(targetImage)
-  setIsModalOpen(true)
-  setModalCaption(modalCaption)
+  const fullImg = src.replace('_sm', '') // remove _sm from filename to get full size image name
+  setimgModalSrc(fullImg)
+  setisImageModalOpen(true)
+  setModalCaption(modalCaption) 
 
 }
   return (

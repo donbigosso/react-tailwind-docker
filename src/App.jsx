@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import Counter from './components/Counter.jsx'
+import { useState, useEffect } from 'react'
+
 import Button from './components/Button.jsx'
 import Tile from './components/Tile.jsx'
 import SectionLgColMdRow from './components/SectionLgColMdRow.jsx'
@@ -9,15 +9,14 @@ import NavTile from './components/NavTile.jsx'
 import ImageTile from './components/ImageTile.jsx'
 import Carousel from './components/Carousel.jsx'
 import {MapPinIcon, EnvelopeIcon} from '@heroicons/react/24/outline'
-
 import IconTile from './components/IconTile.jsx'
 import { getRandomBannerPhotos } from './data/bannerPhotos.js'
 import Paragraph from './components/Paragraph.jsx'
 import ImageModal from './components/ImageModal.jsx'
-import aboutImage from './images/for_content/about_01.jpg'
 import ImageMiniature from './components/ImageMiniature.jsx'
 import aboutMiniature from './images/for_content/about_01_sm.jpg'
-import testImage from './images/for_content/test_image.jpg'
+import A from './components/A.jsx'
+import { getContent, displayParagraph } from './data/contentFunctions.js'
 
 
 
@@ -25,9 +24,19 @@ import testImage from './images/for_content/test_image.jpg'
 export default function App() {
   const [count, setCount] = useState(0)
   const [slides] = useState(() => getRandomBannerPhotos(5))
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [modalSrc, setModalSrc] = useState(null)
+  const [isImageModalOpen, setisImageModalOpen] = useState(false)
+  const [imgModalSrc, setimgModalSrc] = useState(null)
   const [modalCaption, setModalCaption] = useState('Brak podpisu')
+  const [content, setContent] = useState(null)
+
+  useEffect(() => {
+    async function load() {
+      const data = await getContent()
+      setContent(data)
+    }
+    load()
+  }, [])   // empty array = run only once after first render
+ 
   return (
   <div>
     <div id="home" className="h-0 w-0"></div>
@@ -58,12 +67,15 @@ export default function App() {
       <section id="about" className="w-full max-w-3xl">
         <h2 className="text-amber-400 text-2xl font-semibold">O nas</h2>
         <Paragraph>
-          <ImageMiniature src={aboutMiniature} alt="O nas" setIsModalOpen={setIsModalOpen} 
-          setModalSrc={setModalSrc} targetImage={aboutImage} setModalCaption={setModalCaption} modalCaption="Rodzinka PolAfri" />
-          PolAfri powstało w 2014 roku jako lokalne biuro podróży specjalizujące się w lokalnych wycieczkach po Gambii dla polskich turystów. Założone zostało przez mieszane małżeństwo: Sonne (Gambijkę) i Wojtka (Polaka) czyli nas. Na początku mieszkaliśmy razem w Gambii przez prawie 3 lata. W międzyczasie nasza rodzinka powiększyła się o córkę - Marysię. Pod koniec  2016 roku całą trójką przeprowadziliśmy się do Polski i mieszkamy tam, a dokładnie w Bydgoszczy do dziś.
+          <ImageMiniature src={aboutMiniature} alt="O nas" setisImageModalOpen={setisImageModalOpen} 
+          setimgModalSrc={setimgModalSrc} setModalCaption={setModalCaption} modalCaption="Rodzinka PolAfri" />
+          {displayParagraph(content, "001_about_01")}
         </Paragraph>
         <Paragraph>
-          Obecnie PolAfri to projekt promujący Gambię w Polsce i Polskę w Gambii za pośrednictwem naszej rodzinki. Jesteśmy aktywni na różnych social mediach (głównie YouTube), a od czasu do czasu Wojtek prowadzi wycieczki po Afryce (organizowane przez siebie lub inne biura podróży). Wojtek (zwany też Bigosem) jest również założycielem i administratorem piwrwszej i największej grupy facebookowej “Polacy w Gambii”.
+          Obecnie PolAfri to projekt promujący Gambię w Polsce i Polskę w Gambii za pośrednictwem naszej rodzinki. 
+          Jesteśmy aktywni na różnych social mediach (głównie <A href="https://youtube.com/playlist?list=PLNmoIXBH0S1EzYBc3xu5RYIrDCOpcBwII&si=KHBUW6kgXPJVtMuL"  newWindow={true}>YouTube</A>), a od czasu do czasu Wojtek prowadzi wycieczki 
+          po Afryce (organizowane przez siebie lub inne biura podróży). Wojtek (zwany też Bigosem) jest również 
+          założycielem i administratorem piwrwszej i największej grupy facebookowej “<A href="https://www.facebook.com/groups/polacywgambii" newWindow={true}>Polacy w Gambii</A>”.
         </Paragraph>
       </section>
 
@@ -74,12 +86,13 @@ export default function App() {
     </Main>
 
     <ImageModal
-      isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          src={modalSrc}
-          alt="Rodzinka PolAfri"
+      isOpen={isImageModalOpen}
+          onClose={() => setisImageModalOpen(false)}
+          src={imgModalSrc}
+          alt="Obrazek PolAfri"
       caption={modalCaption}
     />
   </div>
 )
+  
 }

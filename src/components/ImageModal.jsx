@@ -17,7 +17,7 @@ export default function ImageModal({ isOpen, onClose, src, alt = '', caption }) 
         <img
           src={src}
           alt={alt}
-          className="w-full h-auto max-h-[80vh] object-contain"
+          className="w-full h-auto max-h-[80vh] object-contain my-2 "
         />
 
         {caption && (
