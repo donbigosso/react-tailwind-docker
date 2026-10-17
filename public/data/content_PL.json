@@ -1,4 +1,17 @@
-{"paragraphs":{
-  "001_about_01":"PolAfri powstało w 2014 roku jako lokalne biuro podróży specjalizujące się w lokalnych wycieczkach po Gambii dla polskich turystów. Założone zostało przez mieszane małżeństwo: Sonne (Gambijkę) i Wojtka (Polaka) czyli nas. Na początku mieszkaliśmy razem w Gambii przez prawie 3 lata. W międzyczasie nasza rodzinka powiększyła się o córkę - Marysię. Pod koniec 2016 roku całą trójką przeprowadziliśmy się do Polski i mieszkamy tam, a dokładnie w Bydgoszczy do dziś.",
-  "002_about_02_01": "Obecnie PolAfri to projekt promujący Gambię w Polsce i Polskę w Gambii za pośrednictwem naszej rodzinki. Jesteśmy aktywni na różnych social mediach (głównie "
-}}
+{
+  "headers": {
+    "001_headline": "Polska w Gambii, Gambia w Polsce",
+    "002_about": "O nas",
+    "003_contact": "Kontakt",
+    "004_about_gambia": "O Gambii"
+  },
+  "subheadings": { "001_who_are_we": "Kim jesteśmy?" },
+  "paragraphs": {
+    "001_about_01": "PolAfri powstało w 2014 roku jako lokalne biuro podróży specjalizujące się w lokalnych wycieczkach po Gambii dla polskich turystów. Założone zostało przez mieszane małżeństwo: Sonne (Gambijkę) i Wojtka (Polaka) czyli nas. Na początku mieszkaliśmy razem w Gambii przez prawie 3 lata. W międzyczasie nasza rodzinka powiększyła się o córkę - Marysię. Pod koniec 2016 roku całą trójką przeprowadziliśmy się do Polski i mieszkamy tam, a dokładnie w Bydgoszczy do dziś. Krótko po naszym przyjeździe, w 2017 roku urodziła się nam nasza druga córeczka - Ewa.",
+    "002_about_02_01": "Obecnie PolAfri to projekt promujący Gambię w Polsce i Polskę w Gambii za pośrednictwem naszej rodzinki. Jesteśmy aktywni na różnych social mediach (głównie ",
+    "003_about_02_02": "), a od czasu do czasu Wojtek prowadzi wycieczki po Afryce (organizowane przez siebie lub inne biura podróży). Wojtek (zwany też Bigosem) jest również założycielem i administratorem piwrwszej i największej grupy facebookowej “",
+    "004_fill_form": "Wypełnij poniższy formularz kontaktowy, a odezwiemy się do Ciebie.",
+    "005_email_info": "Możesz też napisać do nas maila na adres polafri@gmail.com",
+    "006_about_gambia_01": "Gambia to kraj w Afryce Zachodniej, położony na półwyspie Gambii. Jest to jeden z najmniejszych krajów na świecie, ale ma bogatą historię i kulturę. Gambii można opisać jako kraj pełen ciepła, entuzjazmu i przyjazności. To kraj, w którym ludzie wciąż żyją w bliskości natury i szacunku do tradycji."
+  }
+}

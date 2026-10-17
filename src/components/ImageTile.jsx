@@ -1,4 +1,4 @@
-export default function ImageTile({ href, title, src, alt = "", children }) {
+export default function ImageTile({ href, title, src, alt = '', children }) {
   return (
     <a
       href={href}
@@ -7,12 +7,10 @@ export default function ImageTile({ href, title, src, alt = "", children }) {
       <h3 className="text-xl font-semibold text-amber-400">{title}</h3>
 
       <div className="mx-auto mt-3 aspect-square w-full max-w-[200px] overflow-hidden rounded-lg">
-        <img src={src} alt={alt} className="h-full w-full object-cover" />
+        <img src={src} alt={alt} className="h-full w-full object-contain" />
       </div>
 
-      {children && (
-        <p className="mt-3 text-amber-50/80 text-sm">{children}</p>
-      )}
+      {children && <p className="mt-3 text-amber-50/80 text-sm">{children}</p>}
     </a>
-  )
+  );
 }

@@ -3,3 +3,4 @@ junk/
 node_modules/
 .env
 src/App_old.jsx
+.vscode/

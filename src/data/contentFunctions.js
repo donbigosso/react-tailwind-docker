@@ -8,3 +8,11 @@ export async function getContent() {
 export function displayParagraph(content, paragraphID) {
   return content?.paragraphs[paragraphID] || "Ładowanie..."
 }
+export function displayHeader(content, headerID) {
+  return content?.headers[headerID] || "Ładowanie..."
+}
+export function displaySubheading(content, subheadingID) {
+  return content?.subheadings[subheadingID] || "Ładowanie..."
+}
+
+
