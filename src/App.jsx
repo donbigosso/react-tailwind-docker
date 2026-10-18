@@ -5,19 +5,22 @@ import Tile from './components/Tile.jsx';
 import SectionLgColMdRow from './components/SectionLgColMdRow.jsx';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
-import NavTile from './components/NavTile.jsx';
-import ImageTile from './components/ImageTile.jsx';
 import Carousel from './components/Carousel.jsx';
 import { MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
-import IconTile from './components/IconTile.jsx';
 import { getRandomBannerPhotos } from './data/bannerPhotos.js';
 import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
 import ImageMiniature from './components/ImageMiniature.jsx';
 import aboutMiniature from './images/for_content/about_01_sm.jpg';
 import A from './components/A.jsx';
+import H2 from './components/H2.jsx';
+import H3 from './components/H3.jsx';
+import Section from './components/Section.jsx';
 import ContactForm from './components/Web3ContactForm.jsx';
 import flagImage from './images/tiles/flag_sm.png';
+import NewIconTile from './components/NewIconTile.jsx';
+import NewImageTile from './components/NewImageTile.jsx';
+import ColumnGrid from './components/ColumnGrid.jsx';
 import {
   getContent,
   displayParagraph,
@@ -57,23 +60,24 @@ export default function App() {
         </section>
         <Carousel images={slides} />
         <section id="tileSection" className="w-full max-w-4xl">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <ImageTile
+          <ColumnGrid>
+            <NewImageTile
               href="#about"
               title={displayHeader(content, '002_about')}
               src={logo}
-            >
-              {displaySubheading(content, '001_who_are_we')}
-            </ImageTile>
-            <ImageTile title="O Gambii" href="#aboutGambia" src={flagImage}>
-              Informacje o kraju
-            </ImageTile>
-            <IconTile href="#contact" title="Kontakt" Icon={EnvelopeIcon} />
-          </div>
+            />
+
+            <NewImageTile
+              title="O Gambii"
+              href="#aboutGambia"
+              src={flagImage}
+            />
+            <NewIconTile href="#contact" title="Kontakt" Icon={EnvelopeIcon} />
+          </ColumnGrid>
         </section>
 
-        <section id="about" className="w-full max-w-3xl">
-          <h2 className="text-amber-400 text-2xl font-semibold">O nas</h2>
+        <Section id="about">
+          <H2>O nas</H2>
           <Paragraph>
             <ImageMiniature
               src={aboutMiniature}
@@ -102,20 +106,43 @@ export default function App() {
             </A>
             ”.
           </Paragraph>
-        </section>
-        <section id="aboutGambia" className="w-full max-w-3xl">
-          <h2 className="text-amber-400 text-2xl font-semibold">
-            {displayHeader(content, '004_about_gambia')}
-          </h2>
+        </Section>
+        <Section id="aboutGambia">
+          <H2>{displayHeader(content, '004_about_gambia')}</H2>
+          <H3>{displayHeader(content, '005_basic_info')}</H3>
           <Paragraph>
             {displayParagraph(content, '006_about_gambia_01')}
           </Paragraph>
-        </section>
+          <Paragraph>
+            {displayParagraph(content, '007_about_gambia_02')}
+          </Paragraph>
+          <H3 id="history">Historia</H3>
+          <Paragraph>
+            Pomimo że Gambia to stosunkowo młode państwo, które uzyskało
+            niepodległość od Wielkiej Brytanii w 1965 roku, historia tego kraju
+            sięga znacznie dalej niż czasy kolonialne. Oprócz śladów osadnictwa
+            sprzed kilku tysięcy lat w postaci glinianych naczyń i prymitywnych
+            narzędzi zachowały się tu robiące wrażenie starożytne kamienne kręgi
+            (m.in. w Wassu), datowane szeroko na okres od ok. III w. p.n.e. do
+            XVI w. n.e.
+          </Paragraph>
+          <Paragraph>
+            Pierwszym wielkim państwem, w skład którego wchodziło terytorium
+            dzisiejszej Gambii, było Imperium Ghany. W XI w. do regionu zaczął
+            docierać Islam. W kolejnych latach tereny Gambii przechodziły z rąk
+            do rąk, aż do momentu, kiedy w XV w. dotarli tu pierwsi Europejczycy
+            - Portugalczycy. To Brytyjczycy przejęli jednak i rozbudowali Fort
+            James (dziś Kunta Kinteh Island), który odegrał ważną rolę w handlu
+            niewolnikami. Ten tragiczny okres w historii Gambii został
+            przedstawiony w słynnej powieści (i serialu) Alex Haley'a -
+            Korzenie. W 1816 roku Brytyjczycy założyli miasto Bathurst - obecny
+            Banjul - stolicę dzisiejszej Gambii. Kraj pozostawał pod brytyjską
+            dominacją aż do roku 1965.
+          </Paragraph>
+        </Section>
 
-        <section id="contact" className="w-full max-w-3xl">
-          <h2 className="text-amber-400 text-2xl font-semibold">
-            {displayHeader(content, '003_contact')}
-          </h2>
+        <Section id="contact">
+          <H2>{displayHeader(content, '003_contact')}</H2>
           <p className="mt-3 text-slate-300">
             {displayParagraph(content, '004_fill_form')}
           </p>
@@ -123,7 +150,7 @@ export default function App() {
           <p className="mt-3 text-slate-300">
             {displayParagraph(content, '005_email_info')}
           </p>
-        </section>
+        </Section>
       </Main>
 
       <ImageModal
