@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import WeatherComponent from './WeatherComponent';
+import TimeComponent from './TimeComponent';
 
 const links = {
   base: 'https://data.api.xweather.com/conditions/basse%2C%20gambia?fields=periods.weather%2C%20periods.tempC%2C%20periods.icon%2C%20periods.timestamp&client_id=VnZasUcKRAJHdIieiVSck&client_secret=yKLfL0eX9q2ncL4Aonolvh8yNDo8zk83EaSAKl6o',
@@ -23,36 +25,65 @@ export default function WeatherWrapper() {
     warsaw: {},
   });
 
+  // seconds elapsed since we received the timestamp
+  const [elapsed, setElapsed] = useState(0);
+
   useEffect(() => {
     async function load() {
       const [base, banjul, bydgoszcz, warsaw] = await Promise.all([fetchWeather(links.base), fetchWeather(links.banjul), fetchWeather(links.bydgoszcz), fetchWeather(links.warsaw)]);
 
-      setWeather({
-        base,
-        banjul,
-        bydgoszcz,
-        warsaw,
-      });
+      setWeather({ base, banjul, bydgoszcz, warsaw });
     }
 
     load();
   }, []);
 
-  const timestamp = weather.banjul?.response?.[0]?.periods?.[0].timestamp;
-  const gambiaTime = timestamp ? new Date(timestamp * 1000).toISOString().slice(11, 16) : '';
-  const polandTime = timestamp
-    ? new Date(timestamp * 1000).toLocaleTimeString('en-GB', {
+  // tick every minute
+  useEffect(() => {
+    const id = setInterval(() => {
+      setElapsed((prev) => prev + 15);
+    }, 15_000);
+
+    return () => clearInterval(id);
+  }, []);
+
+  const timestamp = weather.banjul?.response?.[0]?.periods?.[0]?.timestamp;
+  const baseMs = timestamp ? timestamp * 1000 + elapsed * 1000 : null;
+  const banjulTemperature = Math.round(weather.banjul?.response?.[0]?.periods?.[0]?.tempC);
+  const baseTemperature = Math.round(weather.base?.response?.[0]?.periods?.[0]?.tempC);
+  const bydgoszczTemperature = Math.round(weather.bydgoszcz?.response?.[0]?.periods?.[0]?.tempC);
+  const warsawTemperature = Math.round(weather.warsaw?.response?.[0]?.periods?.[0]?.tempC);
+  const banjulIcon = weather.banjul?.response?.[0]?.periods?.[0]?.icon;
+  const baseIcon = weather.base?.response?.[0]?.periods?.[0]?.icon;
+  const bydgoszczIcon = weather.bydgoszcz?.response?.[0]?.periods?.[0]?.icon;
+  const warsawIcon = weather.warsaw?.response?.[0]?.periods?.[0]?.icon;
+
+  const gambiaTime = baseMs
+    ? new Date(baseMs).toLocaleTimeString('en-GB', {
+        timeZone: 'Africa/Banjul',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+    : '';
+
+  const polandTime = baseMs
+    ? new Date(baseMs).toLocaleTimeString('en-GB', {
         timeZone: 'Europe/Warsaw',
         hour: '2-digit',
         minute: '2-digit',
         hour12: false,
       })
     : '';
-  //const gambiaTime = new Date(timestamp * 1000).toISOString().slice(11, 16);
 
   return (
-    <div className="text-white">
-      {gambiaTime} - {polandTime}
+    <div className="text-white text-sm flex flex-wrap gap-x-2">
+      <TimeComponent flag="🇬🇲" time={gambiaTime} />
+      <WeatherComponent place="Bandżul" temperature={banjulTemperature} iconFilename={banjulIcon} />
+      <WeatherComponent place="Basse" temperature={baseTemperature} iconFilename={baseIcon} />
+      <TimeComponent flag="🇵🇱" time={polandTime} />
+      <WeatherComponent place="Bydgoszcz" temperature={bydgoszczTemperature} iconFilename={bydgoszczIcon} />
+      <WeatherComponent place="Warszawa" temperature={warsawTemperature} iconFilename={warsawIcon} />
     </div>
   );
 }
