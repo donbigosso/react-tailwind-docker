@@ -12,6 +12,12 @@ import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
 import ImageMiniature from './components/ImageMiniature.jsx';
 import aboutMiniature from './images/for_content/about_01_sm.jpg';
+import coatOfArms from './images/for_content/herb.svg';
+import riverBasseMiniature from './images/for_content/river_basse_sm.jpg';
+import stonceCirclesMiniature from './images/for_content/stone_circles_sm.jpg';
+import presidents from './images/for_content/presidents.jpg';
+import bansangMiniature from './images/for_content/bansang_sm.jpg';
+import beachMiniature from './images/for_content/beach_sm.jpg';
 import A from './components/A.jsx';
 import H2 from './components/H2.jsx';
 import H3 from './components/H3.jsx';
@@ -21,12 +27,9 @@ import flagImage from './images/tiles/flag_sm.png';
 import NewIconTile from './components/NewIconTile.jsx';
 import NewImageTile from './components/NewImageTile.jsx';
 import ColumnGrid from './components/ColumnGrid.jsx';
-import {
-  getContent,
-  displayParagraph,
-  displayHeader,
-  displaySubheading,
-} from './data/contentFunctions.js';
+import { getContent, displayParagraph, displayHeader, displaySubheading } from './data/contentFunctions.js';
+import { calculateCurrency } from './data/currencyCalculator.js';
+import { getPLN_GMD, getEUR_GMD, getUSD_GMD } from './data/currencyCalculator.js';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -35,15 +38,33 @@ export default function App() {
   const [imgModalSrc, setimgModalSrc] = useState(null);
   const [modalCaption, setModalCaption] = useState('Brak podpisu');
   const [content, setContent] = useState(null);
+  const [currencyRates, setCurrencyRates] = useState({
+    eurgmd: null,
+    usdgmd: null,
+    plngmd: null,
+  });
 
   useEffect(() => {
     async function load() {
       const data = await getContent();
+      const plnRate = await getPLN_GMD();
+      const eurRate = await getEUR_GMD();
+      const usdRate = await getUSD_GMD();
+      setCurrencyRates({
+        eurgmd: eurRate,
+        usdgmd: usdRate,
+        plngmd: plnRate,
+      });
       setContent(data);
     }
     load();
   }, []); // empty array = run only once after first render
-
+  const currencyCalculator = calculateCurrency({
+    eurgmd: currencyRates.eurgmd,
+    usdgmd: currencyRates.usdgmd,
+    plngmd: currencyRates.plngmd,
+  });
+  console.log(currencyCalculator.USDtoGMD(17025));
   return (
     <div>
       <div id="home" className="h-0 w-0"></div>
@@ -54,24 +75,14 @@ export default function App() {
             <span className="text-slate-100">Pol</span>
             <span className="text-red-600">Afri</span>
           </h1>
-          <p className="mt-4 text-slate-400">
-            {displayHeader(content, '001_headline')}
-          </p>
+          <p className="mt-4 text-slate-400">{displayHeader(content, '001_headline')}</p>
         </section>
         <Carousel images={slides} />
         <section id="tileSection" className="w-full max-w-4xl">
           <ColumnGrid>
-            <NewImageTile
-              href="#about"
-              title={displayHeader(content, '002_about')}
-              src={logo}
-            />
+            <NewImageTile href="#about" title={displayHeader(content, '002_about')} src={logo} />
 
-            <NewImageTile
-              title="O Gambii"
-              href="#aboutGambia"
-              src={flagImage}
-            />
+            <NewImageTile title="O Gambii" href="#aboutGambia" src={flagImage} />
             <NewIconTile href="#contact" title="Kontakt" Icon={EnvelopeIcon} />
           </ColumnGrid>
         </section>
@@ -91,17 +102,11 @@ export default function App() {
           </Paragraph>
           <Paragraph>
             {displayParagraph(content, '002_about_02_01')}
-            <A
-              href="https://youtube.com/playlist?list=PLNmoIXBH0S1EzYBc3xu5RYIrDCOpcBwII&si=KHBUW6kgXPJVtMuL"
-              newWindow={true}
-            >
+            <A href="https://youtube.com/playlist?list=PLNmoIXBH0S1EzYBc3xu5RYIrDCOpcBwII&si=KHBUW6kgXPJVtMuL" newWindow={true}>
               YouTube
             </A>
             {displayParagraph(content, '003_about_02_02')}
-            <A
-              href="https://www.facebook.com/groups/polacywgambii"
-              newWindow={true}
-            >
+            <A href="https://www.facebook.com/groups/polacywgambii" newWindow={true}>
               Polacy w Gambii
             </A>
             ”.
@@ -111,55 +116,92 @@ export default function App() {
           <H2>{displayHeader(content, '004_about_gambia')}</H2>
           <H3>{displayHeader(content, '005_basic_info')}</H3>
           <Paragraph>
+            <ImageMiniature
+              src={coatOfArms}
+              alt="Herb Gambii"
+              size="small"
+              float="right"
+              setisImageModalOpen={setisImageModalOpen}
+              setimgModalSrc={setimgModalSrc}
+              setModalCaption={setModalCaption}
+              modalCaption="Herb Gambii (źródło: Wikipedia)"
+            />
             {displayParagraph(content, '006_about_gambia_01')}
           </Paragraph>
           <Paragraph>
+            <ImageMiniature
+              src={riverBasseMiniature}
+              alt="Rzeka Basse"
+              size="medium"
+              setisImageModalOpen={setisImageModalOpen}
+              setimgModalSrc={setimgModalSrc}
+              setModalCaption={setModalCaption}
+              modalCaption="Rzeka Gambia w mieście Basse"
+            />
             {displayParagraph(content, '007_about_gambia_02')}
           </Paragraph>
           <H3 id="history">Historia</H3>
+          <ImageMiniature
+            src={stonceCirclesMiniature}
+            alt="Kamienne kręgi"
+            size="medium"
+            float="right"
+            setisImageModalOpen={setisImageModalOpen}
+            setimgModalSrc={setimgModalSrc}
+            setModalCaption={setModalCaption}
+            modalCaption="Kamienne kręgi w Wassu"
+          />
+          <Paragraph>{displayParagraph(content, '008_history_01')}</Paragraph>
+          <Paragraph>{displayParagraph(content, '009_history_02')}</Paragraph>
+          <ImageMiniature
+            src={presidents}
+            alt="Prezydenci Gambii"
+            size="large"
+            float="left"
+            setisImageModalOpen={setisImageModalOpen}
+            setimgModalSrc={setimgModalSrc}
+            setModalCaption={setModalCaption}
+            modalCaption="Prezydenci Gambii: Jawara, Jammeh i Barrow (źródło: Wikipedia)"
+          />
+          <Paragraph>{displayParagraph(content, '010_history_03')}</Paragraph>
+          <H3 id="geography">Geografia</H3>
+          <Paragraph>{displayParagraph(content, '011_geography_01')}</Paragraph>
           <Paragraph>
-            Pomimo że Gambia to stosunkowo młode państwo, które uzyskało
-            niepodległość od Wielkiej Brytanii w 1965 roku, historia tego kraju
-            sięga znacznie dalej niż czasy kolonialne. Oprócz śladów osadnictwa
-            sprzed kilku tysięcy lat w postaci glinianych naczyń i prymitywnych
-            narzędzi zachowały się tu robiące wrażenie starożytne kamienne kręgi
-            (m.in. w Wassu), datowane szeroko na okres od ok. III w. p.n.e. do
-            XVI w. n.e.
+            <ImageMiniature
+              src={bansangMiniature}
+              alt="Bansang"
+              size="small"
+              float="left"
+              setisImageModalOpen={setisImageModalOpen}
+              setimgModalSrc={setimgModalSrc}
+              setModalCaption={setModalCaption}
+              modalCaption="Bansang - widok na miasto i rzekę z jednego z nielicznych wzgórz"
+            />
+            {displayParagraph(content, '012_geography_02')}
           </Paragraph>
-          <Paragraph>
-            Pierwszym wielkim państwem, w skład którego wchodziło terytorium
-            dzisiejszej Gambii, było Imperium Ghany. W XI w. do regionu zaczął
-            docierać Islam. W kolejnych latach tereny Gambii przechodziły z rąk
-            do rąk, aż do momentu, kiedy w XV w. dotarli tu pierwsi Europejczycy
-            - Portugalczycy. To Brytyjczycy przejęli jednak i rozbudowali Fort
-            James (dziś Kunta Kinteh Island), który odegrał ważną rolę w handlu
-            niewolnikami. Ten tragiczny okres w historii Gambii został
-            przedstawiony w słynnej powieści (i serialu) Alex Haley'a -
-            Korzenie. W 1816 roku Brytyjczycy założyli miasto Bathurst - obecny
-            Banjul - stolicę dzisiejszej Gambii. Kraj pozostawał pod brytyjską
-            dominacją aż do roku 1965.
-          </Paragraph>
+          <H3 id="climate">Klimat</H3>
+          <ImageMiniature
+            src={beachMiniature}
+            alt="Plaża"
+            size="medium"
+            float="right"
+            setisImageModalOpen={setisImageModalOpen}
+            setimgModalSrc={setimgModalSrc}
+            setModalCaption={setModalCaption}
+            modalCaption="W Gambii można się kąpać w oceanie przez cały rok."
+          />
+          <Paragraph>{displayParagraph(content, '013_climate')}</Paragraph>
         </Section>
 
         <Section id="contact">
           <H2>{displayHeader(content, '003_contact')}</H2>
-          <p className="mt-3 text-slate-300">
-            {displayParagraph(content, '004_fill_form')}
-          </p>
+          <p className="mt-3 text-slate-300">{displayParagraph(content, '004_fill_form')}</p>
           <ContactForm />
-          <p className="mt-3 text-slate-300">
-            {displayParagraph(content, '005_email_info')}
-          </p>
+          <p className="mt-3 text-slate-300">{displayParagraph(content, '005_email_info')}</p>
         </Section>
       </Main>
 
-      <ImageModal
-        isOpen={isImageModalOpen}
-        onClose={() => setisImageModalOpen(false)}
-        src={imgModalSrc}
-        alt="Obrazek PolAfri"
-        caption={modalCaption}
-      />
+      <ImageModal isOpen={isImageModalOpen} onClose={() => setisImageModalOpen(false)} src={imgModalSrc} alt="Obrazek PolAfri" caption={modalCaption} />
     </div>
   );
 }

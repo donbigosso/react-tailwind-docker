@@ -2,7 +2,7 @@ export default function TileBase({ href, title, placeholder, children }) {
   return (
     <a
       href={href}
-      className="block w-full rounded-xl border border-amber-900/40 bg-amber-950/30 p-4 text-center hover:border-amber-500 hover:bg-amber-950/50 transition-colors"
+      className="block w-full rounded-xl border border-amber-900/40 bg-amber-950/30 p-4 text-center hover:border-amber-500 hover:bg-amber-950/50 transition-colors duration-500"
     >
       <h3 className="text-xl font-semibold text-amber-400">{title}</h3>
 
