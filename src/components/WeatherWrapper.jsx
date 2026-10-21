@@ -36,6 +36,8 @@ export default function WeatherWrapper() {
     }
 
     load();
+    const id = setInterval(load, 60 * 60 * 1000); // every 60 minutes
+    return () => clearInterval(id);
   }, []);
 
   // tick every minute
@@ -77,7 +79,7 @@ export default function WeatherWrapper() {
     : '';
 
   return (
-    <div className="text-white text-sm flex flex-wrap gap-x-2">
+    <div className="grid min-w-0 flex-1 grid-cols-2 gap-x-2 text-xs md:text-sm text-white sm:flex sm:flex-wrap sm:justify-end">
       <TimeComponent flag="🇬🇲" time={gambiaTime} />
       <WeatherComponent place="Bandżul" temperature={banjulTemperature} iconFilename={banjulIcon} />
       <WeatherComponent place="Basse" temperature={baseTemperature} iconFilename={baseIcon} />

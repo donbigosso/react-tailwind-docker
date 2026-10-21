@@ -6,7 +6,7 @@ import SectionLgColMdRow from './components/SectionLgColMdRow.jsx';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Carousel from './components/Carousel.jsx';
-import { MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { MapPinIcon, EnvelopeIcon, MapIcon } from '@heroicons/react/24/outline';
 import { getRandomBannerPhotos } from './data/bannerPhotos.js';
 import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
@@ -30,6 +30,7 @@ import ColumnGrid from './components/ColumnGrid.jsx';
 import { getContent, displayParagraph, displayHeader, displaySubheading } from './data/contentFunctions.js';
 import { calculateCurrency } from './data/currencyCalculator.js';
 import { getPLN_GMD, getEUR_GMD, getUSD_GMD } from './data/currencyCalculator.js';
+import LocatorMap2 from './components/LocatorMap2.jsx';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -89,6 +90,7 @@ export default function App() {
 
         <Section id="about">
           <H2>O nas</H2>
+
           <Paragraph>
             <ImageMiniature
               src={aboutMiniature}
@@ -114,6 +116,9 @@ export default function App() {
         </Section>
         <Section id="aboutGambia">
           <H2>{displayHeader(content, '004_about_gambia')}</H2>
+          <ColumnGrid></ColumnGrid>
+          <H3>Mapa Gambii</H3>
+          <LocatorMap2 />
           <H3>{displayHeader(content, '005_basic_info')}</H3>
           <Paragraph>
             <ImageMiniature
