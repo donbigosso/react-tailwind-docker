@@ -15,8 +15,8 @@ export default function ImageMiniature({ src, alt = '', onClick, setisImageModal
     right: 'float-right ml-2',
   };
   return (
-    <div>
-      <img src={src} alt={alt} onClick={clickFunction} className={`${floats[float]}  ${sizes[size]} rounded-sm cursor-pointer my-2`} />
+    <div className={`${floats[float]}`}>
+      <img src={src} alt={alt} onClick={clickFunction} className={`  ${sizes[size]} rounded-sm cursor-pointer my-2`} />
       {children}
     </div>
   );

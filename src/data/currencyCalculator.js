@@ -12,6 +12,10 @@ export function calculateCurrency(rates) {
       if (rates.usdgmd == null) return null;
       return Math.round(amount * rates.usdgmd * 100) / 100;
     },
+    GBPtoGMD: (amount) => {
+      if (rates.gbpgmd == null) return null;
+      return Math.round(amount * rates.gbpgmd * 100) / 100;
+    },
     GMDtoPLN: (amount) => {
       if (rates.plngmd == null) return null;
       return Math.round((amount / rates.plngmd) * 100) / 100;
@@ -23,6 +27,10 @@ export function calculateCurrency(rates) {
     GMDtoUSD: (amount) => {
       if (rates.usdgmd == null) return null;
       return Math.round((amount / rates.usdgmd) * 100) / 100;
+    },
+    GMDtoGBP: (amount) => {
+      if (rates.gbpgmd == null) return null;
+      return Math.round((amount / rates.gbpgmd) * 100) / 100;
     },
   };
 }
@@ -53,5 +61,10 @@ export async function getEUR_GMD() {
 
 export async function getUSD_GMD() {
   let rate = await getECBConversion('USD', 'GMD');
+  return rate;
+}
+
+export async function getGBP_GMD() {
+  let rate = await getECBConversion('GBP', 'GMD');
   return rate;
 }

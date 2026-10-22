@@ -6,13 +6,15 @@ import SectionLgColMdRow from './components/SectionLgColMdRow.jsx';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Carousel from './components/Carousel.jsx';
-import { MapPinIcon, EnvelopeIcon, MapIcon } from '@heroicons/react/24/outline';
+import { MapPinIcon, EnvelopeIcon, MapIcon, InformationCircleIcon, BookOpenIcon, SunIcon } from '@heroicons/react/24/outline';
 import { getRandomBannerPhotos } from './data/bannerPhotos.js';
 import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
 import ImageMiniature from './components/ImageMiniature.jsx';
 import aboutMiniature from './images/for_content/about_01_sm.jpg';
 import coatOfArms from './images/for_content/herb.svg';
+import geography from './images/tiles/earth_and_clouds.png';
+import archTile from './images/tiles/22jularch.png';
 import riverBasseMiniature from './images/for_content/river_basse_sm.jpg';
 import stonceCirclesMiniature from './images/for_content/stone_circles_sm.jpg';
 import presidents from './images/for_content/presidents.jpg';
@@ -29,8 +31,9 @@ import NewImageTile from './components/NewImageTile.jsx';
 import ColumnGrid from './components/ColumnGrid.jsx';
 import { getContent, displayParagraph, displayHeader, displaySubheading } from './data/contentFunctions.js';
 import { calculateCurrency } from './data/currencyCalculator.js';
-import { getPLN_GMD, getEUR_GMD, getUSD_GMD } from './data/currencyCalculator.js';
+import { getPLN_GMD, getEUR_GMD, getUSD_GMD, getGBP_GMD } from './data/currencyCalculator.js';
 import LocatorMap2 from './components/LocatorMap2.jsx';
+import CurrencyWrapper from './components/CurrencyWrapper.jsx';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -43,6 +46,7 @@ export default function App() {
     eurgmd: null,
     usdgmd: null,
     plngmd: null,
+    gbpgmd: null,
   });
 
   useEffect(() => {
@@ -51,10 +55,12 @@ export default function App() {
       const plnRate = await getPLN_GMD();
       const eurRate = await getEUR_GMD();
       const usdRate = await getUSD_GMD();
+      const gbpRate = await getGBP_GMD();
       setCurrencyRates({
         eurgmd: eurRate,
         usdgmd: usdRate,
         plngmd: plnRate,
+        gbpgmd: gbpRate,
       });
       setContent(data);
     }
@@ -64,10 +70,12 @@ export default function App() {
     eurgmd: currencyRates.eurgmd,
     usdgmd: currencyRates.usdgmd,
     plngmd: currencyRates.plngmd,
+    gbpgmd: currencyRates.gbpgmd,
   });
-  console.log(currencyCalculator.USDtoGMD(17025));
+
+  console.log(currencyCalculator.GMDtoGBP(25000));
   return (
-    <div>
+    <div className="bg-black">
       <div id="home" className="h-0 w-0"></div>
       <Header />
       <Main>
@@ -116,10 +124,17 @@ export default function App() {
         </Section>
         <Section id="aboutGambia">
           <H2>{displayHeader(content, '004_about_gambia')}</H2>
-          <ColumnGrid></ColumnGrid>
-          <H3>Mapa Gambii</H3>
-          <LocatorMap2 />
-          <H3>{displayHeader(content, '005_basic_info')}</H3>
+          <ColumnGrid size="small">
+            <NewIconTile href="#map" title="Mapa" Icon={MapIcon} size="sm" />
+            <NewIconTile href="#basicInfo" title="Informacje podstawowe" Icon={InformationCircleIcon} size="sm" />
+            <NewIconTile href="#history" title="Historia" Icon={BookOpenIcon} size="sm" />
+            <NewImageTile href="#geography" title="Geografia" src={geography} size="sm" />
+            <NewIconTile href="#climate" title="Klimat" Icon={SunIcon} size="sm" />
+            <NewImageTile href="#architecture" title="Ciekawe miejsca" src={archTile} size="sm" />
+          </ColumnGrid>
+          <H3 id="map">Mapa Gambii</H3>
+          {/* <LocatorMap2 /> */}
+          <H3 id="basicInfo">{displayHeader(content, '005_basic_info')}</H3>
           <Paragraph>
             <ImageMiniature
               src={coatOfArms}
@@ -157,6 +172,7 @@ export default function App() {
             modalCaption="Kamienne kręgi w Wassu"
           />
           <Paragraph>{displayParagraph(content, '008_history_01')}</Paragraph>
+          <CurrencyWrapper />
           <Paragraph>{displayParagraph(content, '009_history_02')}</Paragraph>
           <ImageMiniature
             src={presidents}
