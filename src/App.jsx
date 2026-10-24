@@ -30,8 +30,7 @@ import NewIconTile from './components/NewIconTile.jsx';
 import NewImageTile from './components/NewImageTile.jsx';
 import ColumnGrid from './components/ColumnGrid.jsx';
 import { getContent, displayParagraph, displayHeader, displaySubheading } from './data/contentFunctions.js';
-import { calculateCurrency } from './data/currencyCalculator.js';
-import { getPLN_GMD, getEUR_GMD, getUSD_GMD, getGBP_GMD } from './data/currencyCalculator.js';
+import { calculateCurrency, getPLN_GMD, getEUR_GMD, getUSD_GMD, getGBP_GMD } from './data/currencyCalculator.js';
 import LocatorMap2 from './components/LocatorMap2.jsx';
 import CurrencyWrapper from './components/CurrencyWrapper.jsx';
 
