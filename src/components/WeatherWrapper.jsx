@@ -43,8 +43,8 @@ export default function WeatherWrapper() {
   // tick every minute
   useEffect(() => {
     const id = setInterval(() => {
-      setElapsed((prev) => prev + 15);
-    }, 15_000);
+      setElapsed((prev) => prev + 60);
+    }, 60_000);
 
     return () => clearInterval(id);
   }, []);

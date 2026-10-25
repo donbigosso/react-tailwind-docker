@@ -51,28 +51,12 @@ export default function App() {
   useEffect(() => {
     async function load() {
       const data = await getContent();
-      const plnRate = await getPLN_GMD();
-      const eurRate = await getEUR_GMD();
-      const usdRate = await getUSD_GMD();
-      const gbpRate = await getGBP_GMD();
-      setCurrencyRates({
-        eurgmd: eurRate,
-        usdgmd: usdRate,
-        plngmd: plnRate,
-        gbpgmd: gbpRate,
-      });
+
       setContent(data);
     }
     load();
   }, []); // empty array = run only once after first render
-  const currencyCalculator = calculateCurrency({
-    eurgmd: currencyRates.eurgmd,
-    usdgmd: currencyRates.usdgmd,
-    plngmd: currencyRates.plngmd,
-    gbpgmd: currencyRates.gbpgmd,
-  });
 
-  console.log(currencyCalculator.GMDtoGBP(25000));
   return (
     <div className="bg-black">
       <div id="home" className="h-0 w-0"></div>
