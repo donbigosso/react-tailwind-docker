@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import CurrencyBody from './CurrencyBody';
-import { calculateCurrency, getPLN_GMD, getEUR_GMD, getUSD_GMD, getGBP_GMD } from '../data/currencyCalculator.js';
+import { getConversionRates } from '../data/currencyCalculator.js';
 export default function CurrencyWrapper() {
   const [currencyPairs, setCurrencyPairs] = useState({ from: 'PLN', to: 'GMD' });
   const [options, setOptions] = useState({ from: ['PLN', 'GMD', 'USD', 'EUR', 'GBP'], to: ['PLN', 'GMD', 'USD', 'EUR', 'GBP'] });
@@ -25,21 +25,7 @@ export default function CurrencyWrapper() {
   const [rate, setRate] = useState(null);
   useEffect(() => {
     async function load() {
-      const plnRate = await getPLN_GMD();
-      const eurRate = await getEUR_GMD();
-      const usdRate = await getUSD_GMD();
-      const gbpRate = await getGBP_GMD();
-
-      const newRates = {
-        eurgmd: eurRate,
-        usdgmd: usdRate,
-        plngmd: plnRate,
-        gbpgmd: gbpRate,
-        gmdeur: 1 / eurRate,
-        gmdusd: 1 / usdRate,
-        gmdpln: 1 / plnRate,
-        gmdgbp: 1 / gbpRate,
-      };
+      const newRates = await getConversionRates();
 
       setCurrencyRates(newRates);
 

@@ -6,7 +6,14 @@ import SectionLgColMdRow from './components/SectionLgColMdRow.jsx';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Carousel from './components/Carousel.jsx';
-import { MapPinIcon, EnvelopeIcon, MapIcon, InformationCircleIcon, BookOpenIcon, SunIcon } from '@heroicons/react/24/outline';
+import {
+  MapPinIcon,
+  EnvelopeIcon,
+  MapIcon,
+  InformationCircleIcon,
+  BookOpenIcon,
+  SunIcon,
+} from '@heroicons/react/24/outline';
 import { getRandomBannerPhotos } from './data/bannerPhotos.js';
 import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
@@ -29,10 +36,16 @@ import flagImage from './images/tiles/flag_sm.png';
 import NewIconTile from './components/NewIconTile.jsx';
 import NewImageTile from './components/NewImageTile.jsx';
 import ColumnGrid from './components/ColumnGrid.jsx';
-import { getContent, displayParagraph, displayHeader, displaySubheading } from './data/contentFunctions.js';
-import { calculateCurrency, getPLN_GMD, getEUR_GMD, getUSD_GMD, getGBP_GMD } from './data/currencyCalculator.js';
+import {
+  getContent,
+  displayParagraph,
+  displayHeader,
+  displaySubheading,
+} from './data/contentFunctions.js';
+
 import LocatorMap2 from './components/LocatorMap2.jsx';
 import CurrencyWrapper from './components/CurrencyWrapper.jsx';
+import SideSlider from './components/SideSlider.jsx';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -81,7 +94,7 @@ export default function App() {
 
         <Section id="about">
           <H2>O nas</H2>
-
+          <SideSlider side="right" />
           <Paragraph>
             <ImageMiniature
               src={aboutMiniature}
@@ -95,7 +108,10 @@ export default function App() {
           </Paragraph>
           <Paragraph>
             {displayParagraph(content, '002_about_02_01')}
-            <A href="https://youtube.com/playlist?list=PLNmoIXBH0S1EzYBc3xu5RYIrDCOpcBwII&si=KHBUW6kgXPJVtMuL" newWindow={true}>
+            <A
+              href="https://youtube.com/playlist?list=PLNmoIXBH0S1EzYBc3xu5RYIrDCOpcBwII&si=KHBUW6kgXPJVtMuL"
+              newWindow={true}
+            >
               YouTube
             </A>
             {displayParagraph(content, '003_about_02_02')}
@@ -105,11 +121,18 @@ export default function App() {
             ”.
           </Paragraph>
         </Section>
+
         <Section id="aboutGambia">
+          <SideSlider side="left" width={148} image={bansangMiniature} />
           <H2>{displayHeader(content, '004_about_gambia')}</H2>
           <ColumnGrid size="small">
             <NewIconTile href="#map" title="Mapa" Icon={MapIcon} size="sm" />
-            <NewIconTile href="#basicInfo" title="Informacje podstawowe" Icon={InformationCircleIcon} size="sm" />
+            <NewIconTile
+              href="#basicInfo"
+              title="Informacje podstawowe"
+              Icon={InformationCircleIcon}
+              size="sm"
+            />
             <NewIconTile href="#history" title="Historia" Icon={BookOpenIcon} size="sm" />
             <NewImageTile href="#geography" title="Geografia" src={geography} size="sm" />
             <NewIconTile href="#climate" title="Klimat" Icon={SunIcon} size="sm" />
@@ -205,7 +228,13 @@ export default function App() {
         </Section>
       </Main>
 
-      <ImageModal isOpen={isImageModalOpen} onClose={() => setisImageModalOpen(false)} src={imgModalSrc} alt="Obrazek PolAfri" caption={modalCaption} />
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={() => setisImageModalOpen(false)}
+        src={imgModalSrc}
+        alt="Obrazek PolAfri"
+        caption={modalCaption}
+      />
     </div>
   );
 }

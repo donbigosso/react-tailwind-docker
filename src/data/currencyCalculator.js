@@ -1,40 +1,3 @@
-export function calculateCurrency(rates) {
-  return {
-    PLNtoGMD: (amount) => {
-      if (rates.plngmd == null) return null;
-      return Math.round(amount * rates.plngmd * 100) / 100;
-    },
-    EURtoGMD: (amount) => {
-      if (rates.eurgmd == null) return null;
-      return Math.round(amount * rates.eurgmd * 100) / 100;
-    },
-    USDtoGMD: (amount) => {
-      if (rates.usdgmd == null) return null;
-      return Math.round(amount * rates.usdgmd * 100) / 100;
-    },
-    GBPtoGMD: (amount) => {
-      if (rates.gbpgmd == null) return null;
-      return Math.round(amount * rates.gbpgmd * 100) / 100;
-    },
-    GMDtoPLN: (amount) => {
-      if (rates.plngmd == null) return null;
-      return Math.round((amount / rates.plngmd) * 100) / 100;
-    },
-    GMDtoEUR: (amount) => {
-      if (rates.eurgmd == null) return null;
-      return Math.round((amount / rates.eurgmd) * 100) / 100;
-    },
-    GMDtoUSD: (amount) => {
-      if (rates.usdgmd == null) return null;
-      return Math.round((amount / rates.usdgmd) * 100) / 100;
-    },
-    GMDtoGBP: (amount) => {
-      if (rates.gbpgmd == null) return null;
-      return Math.round((amount / rates.gbpgmd) * 100) / 100;
-    },
-  };
-}
-
 function createECBconversionLink(currency1, currency2) {
   let beginining = 'https://api.frankfurter.dev/v2/rates?base=';
   let end = '&quotes=' + currency2;
@@ -67,4 +30,23 @@ export async function getUSD_GMD() {
 export async function getGBP_GMD() {
   let rate = await getECBConversion('GBP', 'GMD');
   return rate;
+}
+
+export async function getConversionRates() {
+  const plnRate = await getPLN_GMD();
+  const eurRate = await getEUR_GMD();
+  const usdRate = await getUSD_GMD();
+  const gbpRate = await getGBP_GMD();
+
+  const newRates = {
+    eurgmd: eurRate,
+    usdgmd: usdRate,
+    plngmd: plnRate,
+    gbpgmd: gbpRate,
+    gmdeur: 1 / eurRate,
+    gmdusd: 1 / usdRate,
+    gmdpln: 1 / plnRate,
+    gmdgbp: 1 / gbpRate,
+  };
+  return newRates;
 }
