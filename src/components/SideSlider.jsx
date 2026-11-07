@@ -8,7 +8,12 @@ const crocodile = {
   left: 'bg-[url("/sliders/Crocodile_LS.png")]',
 };
 
-export default function SideSlider({ side = 'left', width = 94, image }) {
+export default function SideSlider({
+  side = 'left',
+  width = 94,
+  image,
+  text = 'Tutaj ma być treść ciekawostki',
+}) {
   return (
     <div
       id="slider-container"
@@ -31,7 +36,7 @@ export default function SideSlider({ side = 'left', width = 94, image }) {
 
         <div className="w-100  bg-[url('/sliders/Burnt_paper.png')] bg-cover bg-contain bg-center  bg-no-repeat">
           <div className="px-6 py-8">
-            <p className="text-black text-sm">Tu będzie tekst ciekawostki</p>
+            <p className="text-black text-sm">{text}</p>
           </div>
         </div>
       </div>

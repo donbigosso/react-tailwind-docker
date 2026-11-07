@@ -15,6 +15,8 @@ import {
   SunIcon,
 } from '@heroicons/react/24/outline';
 import { getRandomBannerPhotos } from './data/bannerPhotos.js';
+import { returnFunFacts } from './data/funFacts.js';
+
 import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
 import ImageMiniature from './components/ImageMiniature.jsx';
@@ -69,7 +71,8 @@ export default function App() {
     }
     load();
   }, []); // empty array = run only once after first render
-
+  const testPath = returnFunFacts().filenameBatches[0][2];
+  console.log(testPath);
   return (
     <div className="bg-black">
       <div id="home" className="h-0 w-0"></div>
@@ -94,7 +97,7 @@ export default function App() {
 
         <Section id="about">
           <H2>O nas</H2>
-          <SideSlider side="right" />
+          <SideSlider side="right" image={testPath} text="Bolesław Chrobry to król Polski." />
           <Paragraph>
             <ImageMiniature
               src={aboutMiniature}
