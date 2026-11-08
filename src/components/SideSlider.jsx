@@ -14,6 +14,8 @@ export default function SideSlider({
   image,
   text = 'Tutaj ma być treść ciekawostki',
 }) {
+  //      <div className="w-100  bg-[url('/sliders/Burnt_paper.png')] bg-cover bg-contain bg-center  bg-no-repeat">
+
   return (
     <div
       id="slider-container"
@@ -34,7 +36,7 @@ export default function SideSlider({
           <img src={image} alt="Slider image" className="w-full h-full object-cover " />
         </div>
 
-        <div className="w-100  bg-[url('/sliders/Burnt_paper.png')] bg-cover bg-contain bg-center  bg-no-repeat">
+        <div className="w-96 bg-[url('/sliders/Burnt_paper.png')] bg-cover bg-contain bg-center bg-no-repeat">
           <div className="px-6 py-8">
             <p className="text-black text-sm">{text}</p>
           </div>

@@ -22,5 +22,31 @@
     "011_geography_01": "Jak już wspomniano, Gambia posiada tylko jednego lądowego sąsiada - Senegal. Granica z tym krajem ma ok. 750 km długości, a wybrzeże Atlantyku ok. 80 km. Sam kraj ciągnie się wzdłuż rzeki o tej samej nazwie na długość ok. 320-350 km ze wschodu na zachód, a jego szerokość waha się od 60 do 20 km.",
     "012_geography_02": "Pod względem ukształtowania terenu Gambia to niemal płaska równina zalewowa rzeki, otoczona niskimi wzgórzami. Najwyższy punkt kraju leży zaledwie na wysokości ok. 53 m n.p.m. Administracyjnie kraj dzieli się na kilka regionów (m.in. Greater Banjul, West Coast, North Bank, Lower River, Central River i Upper River). Największe skupiska ludności znajdują się w aglomeracji stołecznej (Banjul i Serekunda) zwanej Greater Banjul Area lub Kombo na wybrzeżu oraz wzdłuż rzeki - m.in. w Brikamie, Farafenni czy Basse Santa Su.",
     "013_climate": "Klimat Gambii jest tropikalny, z wyraźnym podziałem na dwie pory roku. Pora sucha trwa zwykle od listopada do maja - czerwca i przynosi mnóstwo słońca oraz temperatury w ciągu dnia rzędu 30-35°C na wybrzeżu (w głębi lądu temperatury dochodzą do 40°C). Pora deszczowa jest wilgotniejsza, a deszcze często pojawiają się w postaci krótkich, ale bardzo intensywnych opadów. Nawet wtedy słońce regularnie wychodzi zza chmur i świeci przez kilka godzin dziennie. Dzięki bliskości oceanu temperatury pozostają przyjemne przez cały rok, a woda w Atlantyku jest na tyle ciepła, że kąpieli można zażywać o każdej porze roku. Pomimo że sezon turystyczny pokrywa się jedynie z porą suchą, to przyjazd do Gambii w czasie pory deszczowej może okazać się bardzo ciekawym doświadczeniem. Zobaczymy wtedy bujną zieleń i kolorowe kwiaty, a kurz z piaszczystych dróg nie będzie nam doskwierał."
-  }
+  },
+  "fun_fact_texts": [
+    "Najwyzsza góra w Gambii ma 53 m n.p.m.",
+    "Gambia ma tylko jednego sąsida - Senegal",
+    "Gambię zamieszkuje ponad 8 plemion",
+    "Jednymi z pierwszych kolonizatorów Gambii byli lennicy polskiego króla Jana Kazimierza",
+    "W Gambii panuje zwyczaj wychodzenia w niedzielę po południu na plażę, tzw. Sunday Beach",
+    "Największym dzikim zwierzciem lądowym w Gambii jest hipopotam",
+    "Do 2019 r. w Gambii nie było ani jednego mostu przez rzekę Gambia",
+    "Obowiązującą walutą w Gambii jest dalasi",
+    "Najbardziej popularnym lokalnym daniem w Gambii jest domoda, czyli ryż z sosem z orzeszków ziemnych.",
+    "JAkaś informacja 10",
+    "Kolejna ciekawostka"
+  ],
+  "fun_fact_images": [
+    "fun_fact_01.jpg",
+    "fun_fact_02.jpg",
+    "fun_fact_03.jpg",
+    "fun_fact_04.jpg",
+    "fun_fact_05.jpg",
+    "fun_fact_06.jpg",
+    "fun_fact_07.jpg",
+    "fun_fact_08.jpg",
+    "fun_fact_09.jpg",
+    "fun_fact_10.jpg",
+    "fun_fact_11.jpg"
+  ]
 }

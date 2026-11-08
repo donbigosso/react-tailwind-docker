@@ -15,7 +15,7 @@ import {
   SunIcon,
 } from '@heroicons/react/24/outline';
 import { getRandomBannerPhotos } from './data/bannerPhotos.js';
-import { returnFunFacts } from './data/funFacts.js';
+import { getNextFunFactFilePath, getNextFunFactText } from './data/funFacts.js';
 
 import Paragraph from './components/Paragraph.jsx';
 import ImageModal from './components/ImageModal.jsx';
@@ -71,8 +71,7 @@ export default function App() {
     }
     load();
   }, []); // empty array = run only once after first render
-  const testPath = returnFunFacts().filenameBatches[0][2];
-  console.log(testPath);
+
   return (
     <div className="bg-black">
       <div id="home" className="h-0 w-0"></div>
@@ -97,7 +96,11 @@ export default function App() {
 
         <Section id="about">
           <H2>O nas</H2>
-          <SideSlider side="right" image={testPath} text="Bolesław Chrobry to król Polski." />
+          <SideSlider
+            side="right"
+            image={getNextFunFactFilePath(content)}
+            text={getNextFunFactText(content)}
+          />
           <Paragraph>
             <ImageMiniature
               src={aboutMiniature}
@@ -126,7 +129,12 @@ export default function App() {
         </Section>
 
         <Section id="aboutGambia">
-          <SideSlider side="left" width={148} image={bansangMiniature} />
+          <SideSlider
+            side="left"
+            width={148}
+            image={getNextFunFactFilePath(content)}
+            text={getNextFunFactText(content)}
+          />
           <H2>{displayHeader(content, '004_about_gambia')}</H2>
           <ColumnGrid size="small">
             <NewIconTile href="#map" title="Mapa" Icon={MapIcon} size="sm" />
